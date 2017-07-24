@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar color="nesuku-logo-color1">
+    <ion-title>
+      <ion-icon name="musical-note"></ion-icon>&nbsp;&nbsp;
+      {{ filename }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <!-- Playback section -->
+  <ion-card padding text-center>
+    <h1>Playback</h1>
+    <ion-card-content>
+      <button ion-button (click)="playRecording()" color="primary">
+        &nbsp;&nbsp;<ion-icon name="play"></ion-icon>&nbsp;&nbsp;
+      </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+      <button ion-button (click)="pausePlayRecording()" color="secondary">
+        &nbsp;&nbsp;<ion-icon name="pause"></ion-icon>&nbsp;&nbsp;
+      </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+      <button ion-button (click)="stopPlayRecording()" color="danger">
+        &nbsp;&nbsp;<ion-icon name="square"></ion-icon>&nbsp;&nbsp;
+      </button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
