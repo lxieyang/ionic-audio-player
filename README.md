@@ -19,7 +19,9 @@ It features a **play/pause** button, **skip back/forward** buttons and a **progr
 
 ### Android
 
-<img width="250" alt="android" src="preview/interface/android.png">
+<img width="175" alt="android" src="preview/interface/android.png">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="175" alt="android" src="preview/demo/android.gif">
 
 ## Author
 
