@@ -6,9 +6,9 @@ It features a **play/pause** button, **skip back/forward** buttons and a **progr
 
 ## Ionic Native Plugins
 
-- File
-- File Transfer
-- Media
+- [File](https://ionicframework.com/docs/native/file/)
+- [File Transfer](https://ionicframework.com/docs/native/file-transfer/)
+- [Media](https://ionicframework.com/docs/native/media/)
 
 ## Support Platforms
 
