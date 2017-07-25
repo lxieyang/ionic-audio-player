@@ -4,6 +4,14 @@ This is a simple audio player created with **Ionic 3.x** / **Angular 4.x**
 
 It features a **play/pause** button, **skip back/forward** buttons and a **progress bar** that displays the current position of the audio file. It also supports setting arbitrary positions using the **progress bar**.
 
+The app will automatically download the song ***Hotel California*** from the Internet and prep for playing. You'll have to have an actual Android or iOS device to use this app.
+
+To peek into the code, feel free to clone the repo and navigate your way through. I think it's pretty straightforward.
+
+To try it out, use the following commands to install the app on an actual device:
+- For Android devices: make sure you have a wired connection from your phone to your Mac/PC, then run `ionic cordova run android --prod` in terminal.
+- For iOS devices: make sure you have a Mac, and run `ionic cordova build ios --prod`. Then use Xcode to open up the project and install it to your iOS devices.
+
 ## Ionic Native Plugins
 
 - [File](https://ionicframework.com/docs/native/file/)
