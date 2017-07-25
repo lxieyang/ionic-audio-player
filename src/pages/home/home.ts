@@ -15,6 +15,7 @@ export class AudioDetail {
 
   filename: any = "Hotel California";
   curr_playing_file: MediaObject;
+  storageDirectory: any;
 
   is_playing: boolean = false;
   is_in_play: boolean = false;
@@ -37,6 +38,14 @@ export class AudioDetail {
     private file: File,
     private transfer: FileTransfer,
     private media: Media) {
+      // assign storage directory
+      this.platform.ready().then(() => {
+        if(this.platform.is('ios')) {
+          this.storageDirectory = this.file.dataDirectory;
+        } else if(this.platform.is('android')) {
+          this.storageDirectory = this.file.externalDataDirectory;
+        }
+      });
 
   }
 
@@ -48,7 +57,7 @@ export class AudioDetail {
   prepareAudioFile() {
     let url = "http://fabienne.sigonney.free.fr/tranquilit%E9/Eagles%20-%20Hotel%20California%20(Acoustic).mp3";
     this.platform.ready().then(() => {
-      this.file.resolveDirectoryUrl(this.file.externalDataDirectory).then((resolvedDirectory) => {
+      this.file.resolveDirectoryUrl(this.storageDirectory).then((resolvedDirectory) => {
         // inspired by: https://github.com/ionic-team/ionic-native/issues/1711
         console.log("resolved  directory: " + resolvedDirectory.nativeURL);
         this.file.checkFile(resolvedDirectory.nativeURL, "hotel_california.mp3").then((data) => {
@@ -68,9 +77,8 @@ export class AudioDetail {
               content: 'Downloading the song from the web...'
             });
             loading.present();
-
             const fileTransfer: FileTransferObject = this.transfer.create();
-            fileTransfer.download(url, this.file.externalDataDirectory + "hotel_california.mp3").then((entry) => {
+            fileTransfer.download(url, this.storageDirectory + "hotel_california.mp3").then((entry) => {
               console.log('download complete' + entry.toURL());
               loading.dismiss();
               this.getDurationAndSetToPlay();
@@ -85,8 +93,17 @@ export class AudioDetail {
     });
   }
 
+  createAudioFile(pathToDirectory, filename): MediaObject {
+    if (this.platform.is('ios')) {  //ios
+      return this.media.create((pathToDirectory).replace(/^file:\/\//, '') + '/' + filename);
+    } else {  // android
+      return this.media.create(pathToDirectory + filename);
+    } 
+  }
+
   getDurationAndSetToPlay() {
-    this.curr_playing_file = this.media.create(this.file.externalDataDirectory + "hotel_california.mp3");
+    // this.curr_playing_file = this.media.create(this.storageDirectory + "hotel_california.mp3");
+    this.curr_playing_file = this.createAudioFile(this.storageDirectory, "hotel_california.mp3");
     this.curr_playing_file.play();
     this.curr_playing_file.setVolume(0.0);  // you don't want users to notice that you are playing the file
     let self = this;
@@ -126,7 +143,8 @@ export class AudioDetail {
   }
 
   setRecordingToPlay() {
-    this.curr_playing_file = this.media.create(this.file.externalDataDirectory + "hotel_california.mp3");
+    // this.curr_playing_file = this.media.create(this.storageDirectory + "hotel_california.mp3");
+    this.curr_playing_file = this.createAudioFile(this.storageDirectory, "hotel_california.mp3");
     this.curr_playing_file.onStatusUpdate.subscribe(status => {
       // 2: playing
       // 3: pause
