@@ -102,7 +102,6 @@ export class AudioDetail {
   }
 
   getDurationAndSetToPlay() {
-    // this.curr_playing_file = this.media.create(this.storageDirectory + "hotel_california.mp3");
     this.curr_playing_file = this.createAudioFile(this.storageDirectory, "hotel_california.mp3");
     this.curr_playing_file.play();
     this.curr_playing_file.setVolume(0.0);  // you don't want users to notice that you are playing the file
@@ -143,7 +142,6 @@ export class AudioDetail {
   }
 
   setRecordingToPlay() {
-    // this.curr_playing_file = this.media.create(this.storageDirectory + "hotel_california.mp3");
     this.curr_playing_file = this.createAudioFile(this.storageDirectory, "hotel_california.mp3");
     this.curr_playing_file.onStatusUpdate.subscribe(status => {
       // 2: playing
@@ -200,12 +198,6 @@ export class AudioDetail {
         break;
       case 'forward':
         this.position = number + step < this.duration ? number + step : this.duration;
-        // if(number + step < this.duration) {
-        //   this.position = number + step;
-        // } else {
-        //   this.stopPlayRecording();
-        //   this.setRecordingToPlay();
-        // }
         break;
       default:
         break;
