@@ -1,30 +1,54 @@
-<ion-header>
-  <ion-navbar color="nesuku-logo-color1">
-    <ion-title>
-      <ion-icon name="musical-note"></ion-icon>&nbsp;&nbsp;
-      {{ filename }}
-    </ion-title>
-  </ion-navbar>
-</ion-header>
 
 
 <ion-content padding>
   <!-- Playback section -->
-  <ion-card padding text-center>
-    <h1>Playback</h1>
-    <ion-card-content>
-      <button ion-button (click)="playRecording()" color="primary">
-        &nbsp;&nbsp;<ion-icon name="play"></ion-icon>&nbsp;&nbsp;
-      </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <div text-center>
+    <!-- File name -->
+    <br>
+    <h1>{{ filename }}</h1>
+    <br>
 
-      <button ion-button (click)="pausePlayRecording()" color="secondary">
-        &nbsp;&nbsp;<ion-icon name="pause"></ion-icon>&nbsp;&nbsp;
-      </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      
-      <button ion-button (click)="stopPlayRecording()" color="danger">
-        &nbsp;&nbsp;<ion-icon name="square"></ion-icon>&nbsp;&nbsp;
-      </button>
-    </ion-card-content>
-  </ion-card>
+    <!-- avatar -->
+    <div class="avatar"></div>
+    <br>
+
+    <!-- control bar -->
+    <div>
+      <ion-range min="0" max="{{duration}}" [(ngModel)]="position"> <!--  [disabled]="is_in_play && is_playing"  -->
+        <ion-label range-left>{{ position*1000 | date:'mm:ss' }}</ion-label>
+        <ion-label range-right *ngIf="duration == -1" >--:--</ion-label>
+        <ion-label range-right *ngIf="duration != -1">{{ duration*1000 | date:'mm:ss' }}</ion-label>
+      </ion-range>
+    </div>
+    <br>
+    
+    <ion-grid>
+      <ion-row justify-content-center align-items-center style="height: 100%">
+        <ion-col>
+          <!-- Backwards -->
+          <button ion-button class="skip-btn" color="primary" [disabled]="!is_ready || !is_in_play" (click)="controlSeconds('back')">
+                  &nbsp;&nbsp;<ion-icon name="skip-backward"></ion-icon>&nbsp;&nbsp;
+          </button>
+        </ion-col>
+        <ion-col>
+          <!-- Play/Pause -->
+          <button ion-button class="play-pause-btn" (click)="playRecording()" color="primary" *ngIf="!is_playing" [disabled]="!is_ready">
+            <ion-icon name="play"></ion-icon>
+          </button>
+
+          <button ion-button class="play-pause-btn" (click)="pausePlayRecording()" color="secondary" *ngIf="is_playing" [disabled]="!is_ready">
+            <ion-icon name="pause"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col>
+          <!-- Forwards -->
+          <button ion-button class="skip-btn" color="primary" [disabled]="!is_ready || !is_in_play" (click)="controlSeconds('forward')">
+                  &nbsp;&nbsp;<ion-icon name="skip-forward"></ion-icon>&nbsp;&nbsp;
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
 
 </ion-content>

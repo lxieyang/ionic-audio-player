@@ -5,12 +5,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { AudioDetail } from '../pages/home/home';
+
+import { Media, MediaObject } from '@ionic-native/media';
+import { File } from '@ionic-native/file';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    AudioDetail
   ],
   imports: [
     BrowserModule,
@@ -19,11 +24,15 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    AudioDetail
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    File,
+    Media,
+    FileTransfer,
+    FileTransferObject,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
