@@ -109,7 +109,7 @@ export class AudioDetail {
     this.get_position_interval = setInterval(function() {
       let last_position = self.position;
       self.curr_playing_file.getCurrentPosition().then((position) => {
-        if (position >= 0) {
+        if (position >= 0 && position < self.duration) {
           if(Math.abs(last_position - position) >= diff) {
             // set position
             self.curr_playing_file.seekTo(last_position*1000);
@@ -117,6 +117,9 @@ export class AudioDetail {
             // update position for display
             self.position = position;
           }
+        } else if (position >= self.duration) {
+          self.stopPlayRecording();
+          self.setRecordingToPlay();
         }
       });
     }, 100);
@@ -178,12 +181,13 @@ export class AudioDetail {
         this.position = number < step ? 0.001 : number - step;
         break;
       case 'forward':
-        if(number + step < this.duration) {
-          this.position = number + step;
-        } else {
-          this.stopPlayRecording();
-          this.setRecordingToPlay();
-        }
+        this.position = number + step < this.duration ? number + step : this.duration;
+        // if(number + step < this.duration) {
+        //   this.position = number + step;
+        // } else {
+        //   this.stopPlayRecording();
+        //   this.setRecordingToPlay();
+        // }
         break;
       default:
         break;
