@@ -1,6 +1,6 @@
-# ionic-audio-player
+# Ionic Audio Player (updated w/ Ionic v4 & Angular v8 in 2019)
 
-This is a simple audio player created with **Ionic 4+** / **Angular 8+**
+This is a simple audio player created with **Ionic 4+** / **Angular 8+** (updated in 2019)
 
 It features a **play/pause** button, **skip back/forward** buttons and a **progress bar** that displays the current position of the audio file. It also supports setting arbitrary positions using the **progress bar**.
 
@@ -36,7 +36,7 @@ To try it out, use the following commands to install the app on an actual device
 
 ### GIF
 
-<img width="250" alt="android" src="preview/demo/android.gif">
+<img width="250" alt="demo" src="preview/demo/demo.gif">
 
 ## References
 
