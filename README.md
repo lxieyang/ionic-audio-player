@@ -11,7 +11,7 @@ To peek into the code, feel free to clone the repo and navigate your way through
 To try it out, use the following commands to install the app on an actual device:
 
 - For Android devices: make sure you have a wired connection from your phone to your Mac/PC, then run `ionic cordova run android --prod` in terminal.
-- For iOS devices: make sure you have a Mac, and run `ionic cordova build ios --prod`. Then use Xcode to open up the project and install it to your iOS devices.
+- For iOS devices: make sure you have a Mac, and run `ionic cordova prepare ios`. Then use Xcode to open up the project and install it to your iOS devices.
 
 ## Ionic Native Plugins
 
@@ -52,4 +52,3 @@ Thanks to the following posts and sources, I was able to come up with this solut
 Created by [Michael Xieyang Liu](https://lxieyang.github.io)
 
 Last updated: Aug 20, 2019
-
