@@ -1,14 +1,58 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <!-- Playback section -->
+  <div text-center>
+    <!-- File name -->
+    <br>
+    <h1>{{ title }}</h1>
+    <br>
+
+    <!-- avatar -->
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <img src="../../assets/img/icon.png" alt="ihaveadream" style="width: 80%; " />
+    </div>
+    <br>
+
+    <!-- control bar -->
+    <div>
+      <ion-range min="0" max="{{duration}}" [(ngModel)]="position">
+        <!--  [disabled]="is_in_play && is_playing"  -->
+        <ion-label slot="start">{{ position*1000 | date:'mm:ss' }}</ion-label>
+        <ion-label slot="end" *ngIf="duration == -1">--:--</ion-label>
+        <ion-label slot="end" *ngIf="duration != -1">{{ duration*1000 | date:'mm:ss' }}</ion-label>
+      </ion-range>
+    </div>
+    <br>
+
+    <ion-grid>
+      <ion-row class="ion-align-items-center ion-justify-content-center" style="height: 100%">
+        <ion-col>
+          <!-- Backwards -->
+          <ion-fab-button class="skip-btn" color="primary" [disabled]="!is_ready || !is_in_play"
+            (click)="controlSeconds('back')">
+            &nbsp;&nbsp;<ion-icon name="skip-backward"></ion-icon>&nbsp;&nbsp;
+          </ion-fab-button>
+        </ion-col>
+        <ion-col>
+          <!-- Play/Pause -->
+          <ion-fab-button class="play-pause-btn" (click)="playRecording()" color="primary" *ngIf="!is_playing"
+            [disabled]="!is_ready">
+            <ion-icon name="play"></ion-icon>
+          </ion-fab-button>
+
+          <ion-fab-button class="play-pause-btn" (click)="pausePlayRecording()" color="secondary" *ngIf="is_playing"
+            [disabled]="!is_ready">
+            <ion-icon name="pause"></ion-icon>
+          </ion-fab-button>
+        </ion-col>
+        <ion-col>
+          <!-- Forwards -->
+          <ion-fab-button class="skip-btn" color="primary" [disabled]="!is_ready || !is_in_play"
+            (click)="controlSeconds('forward')">
+            &nbsp;&nbsp;<ion-icon name="skip-forward"></ion-icon>&nbsp;&nbsp;
+          </ion-fab-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
   </div>
 </ion-content>
