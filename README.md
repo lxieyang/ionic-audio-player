@@ -28,7 +28,7 @@ To try it out, use the following commands to install the app on an actual device
 
 ### Android
 
-<img width="250" alt="android" src="preview/interface/android.png">
+<img width="250" alt="android" src="preview/interface/android.jpg">
 
 ### iOS
 
